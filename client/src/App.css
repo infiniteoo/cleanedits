@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+html, body, #root {
+  font: 0.9rem sans-serif;
+  background: #0a1f44;
+  color: #1e2432;
+  height: 100%;
+  margin: 0;
+}
+
+.main-container {
+ /*  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.418) ), url('./imgs/2pac.jpg'); */
+  background-size: cover;
+  background-position: center;
+}
+
+.main-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.inner-container {
+  background-color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+.inner-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
