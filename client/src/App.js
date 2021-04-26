@@ -22,12 +22,22 @@ function App() {
   const [uploaded, setUploaded] = useState(false);
   const [infoEntered, setInfoEntered] = useState(false);
 
+  const initialOptions = {
+    "client-id": "test",
+    currency: "USD",
+    intent: "capture",
+    "data-client-token": "abc123xyz==",
+};
+
   return (
+    
+      
     <div
       className="main-container"
       style={{ backgroundImage: `url(${randomBG()})` }}
     >
       {!uploaded && (
+        
         <div>
           <div className="inner-container">
             <p style={{ fontSize: "105px" }}>Clean Edits</p>
@@ -62,6 +72,7 @@ function App() {
       <div></div>
       
     </div>
+    
   );
 }
 
