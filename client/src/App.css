@@ -38,11 +38,16 @@
 }
 
 html, body, #root {
-  font: 0.9rem sans-serif;
+  font-family: 'Audiowide', cursive;
   background: #0a1f44;
   color: #1e2432;
   height: 100%;
   margin: 0;
+}
+
+p {
+  font-family: 'Freckle Face', cursive;
+  color: darkslategrey
 }
 
 .main-container {
@@ -56,19 +61,23 @@ html, body, #root {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  
 }
 
 .inner-container {
   background-color: white;
   background-size: cover;
   background-position: center;
+  border-radius: 10px 10px 10px;
+  box-shadow: 7px 7px;
+  
 }
 
 .inner-container {
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   flex-direction: column;
   padding: 20px;
