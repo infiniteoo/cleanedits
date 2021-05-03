@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import PayPalButton from './PaypalButton'
 
 import { Grid, Typography, Container, Paper } from "@material-ui/core";
 
@@ -37,7 +38,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const InputForm = (props) => {
+
+  useEffect(() => {
+    console.log("props", props)
+    
+  }, [])
+
   const classes = useStyles();
   return (
     <Container className={classes.container}>
@@ -52,6 +61,7 @@ const InputForm = (props) => {
               >
                 Payment
               </Typography>
+              <PayPalButton numOfEdits={props.numOfEdits}/>
 
              
             </Grid>

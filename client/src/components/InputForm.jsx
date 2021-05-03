@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const InputForm = (props) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [totalTracks, setTotalTracks] = useState("");
   const classes = useStyles();
   return (
     <Container className={classes.container}>
@@ -57,15 +60,32 @@ const InputForm = (props) => {
               <Typography gutterBottom variant="h6" style={{fontFamily: 'Freckle Face', fontSize: "50px"}}>
                 Your Info
               </Typography>
-              <TextField label="Name:" fullWidth></TextField>
-              <TextField label="Email:" fullWidth></TextField>
-              <TextField label="# of Tracks:" fullWidth></TextField>
+              <TextField 
+                label="Name:" 
+                fullWidth
+                onChange={event => setName(event.target.value)}
+              
+              ></TextField>
+              <TextField 
+                label="Email:" 
+                fullWidth
+                onChange={event => setEmail(event.target.value)}
+              ></TextField>
+              <TextField 
+                label="# of Tracks:" 
+                fullWidth
+                onChange={event => setTotalTracks(event.target.value)}
+              ></TextField>
               <Button 
                 variant="contained" 
                 color="primary" 
                 fullWidth 
                 className={classes.margin}
-                onClick={() => props.setInfoEntered(true)}
+                onClick={() => {
+                  props.setInfoEntered(true);
+                  props.setNumOfEdits(totalTracks)
+                  console.log("totalTracks, name, email", totalTracks, name, email)
+                }}
                 
                 > Submit </Button>
             </Grid>

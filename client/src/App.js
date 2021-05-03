@@ -21,6 +21,7 @@ function App() {
 
   const [uploaded, setUploaded] = useState(false);
   const [infoEntered, setInfoEntered] = useState(false);
+  const [numOfEdits, setNumOfEdits] = useState(0);
 
   const initialOptions = {
     "client-id": "test",
@@ -58,13 +59,13 @@ function App() {
       )}
       {uploaded && !infoEntered && (
         <div>
-        <InputForm setInfoEntered={setInfoEntered}/>
+        <InputForm setInfoEntered={setInfoEntered} setNumOfEdits={setNumOfEdits}/>
         
       </div>
       )}
        {uploaded && infoEntered && (
         <div>
-        <Payment />
+        <Payment numOfEdits={numOfEdits} />
         
       </div>
       )}
