@@ -99,7 +99,7 @@ class PaypalButton extends React.Component {
             <div className="xxx">
               <AppBar className="appBar" position="static" color="inherit">
                 <Typography variant="h3" align="center">
-                  Please select your payment method:
+                  Please select:
                 </Typography>
               </AppBar>
               <h2 style={{ borderColor: "5px solid black" }}> </h2>

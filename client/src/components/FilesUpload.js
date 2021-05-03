@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import UploadService from "../services/FileUploadService";
 
-const UploadFiles = () => {
+
+const UploadFiles = (props) => {
   const [selectedFiles, setSelectedFiles] = useState(undefined);
   const [progressInfos, setProgressInfos] = useState({ val: [] });
   const [message, setMessage] = useState([]);
   const [fileInfos, setFileInfos] = useState([]);
   const progressInfosRef = useRef(null)
+  
 
   useEffect(() => {
+    console.log('________________email',props.email)
     UploadService.getFiles().then((response) => {
       setFileInfos(response.data);
+      
+      
     });
   }, []);
 
@@ -21,7 +26,7 @@ const UploadFiles = () => {
 
   const upload = (idx, file) => {
     let _progressInfos = [...progressInfosRef.current.val];
-    return UploadService.upload(file, (event) => {
+    return UploadService.upload(file, props.email, (event) => {
       _progressInfos[idx].percentage = Math.round(
         (100 * event.loaded) / event.total
       );

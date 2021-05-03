@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const InputForm = (props) => {
-  const [name, setName] = useState("");
+  
   const [email, setEmail] = useState("");
   const [totalTracks, setTotalTracks] = useState("");
   const classes = useStyles();
@@ -60,12 +60,7 @@ const InputForm = (props) => {
               <Typography gutterBottom variant="h6" style={{fontFamily: 'Freckle Face', fontSize: "50px"}}>
                 Your Info
               </Typography>
-              <TextField 
-                label="Name:" 
-                fullWidth
-                onChange={event => setName(event.target.value)}
               
-              ></TextField>
               <TextField 
                 label="Email:" 
                 fullWidth
@@ -84,7 +79,9 @@ const InputForm = (props) => {
                 onClick={() => {
                   props.setInfoEntered(true);
                   props.setNumOfEdits(totalTracks)
-                  console.log("totalTracks, name, email", totalTracks, name, email)
+                  
+                  props.setEmail(email)
+                  console.log("totalTracks, name, email", totalTracks, email)
                 }}
                 
                 > Submit </Button>

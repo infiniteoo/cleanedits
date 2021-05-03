@@ -61,7 +61,11 @@ const InputForm = (props) => {
               >
                 Payment
               </Typography>
-              <PayPalButton numOfEdits={props.numOfEdits}/>
+              <PayPalButton 
+                numOfEdits={props.numOfEdits}
+                name={props.name}
+                email={props.email}  
+              />
 
              
             </Grid>

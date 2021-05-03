@@ -22,6 +22,8 @@ function App() {
   const [uploaded, setUploaded] = useState(false);
   const [infoEntered, setInfoEntered] = useState(false);
   const [numOfEdits, setNumOfEdits] = useState(0);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   const initialOptions = {
     "client-id": "test",
@@ -37,35 +39,48 @@ function App() {
       className="main-container"
       style={{ backgroundImage: `url(${randomBG()})` }}
     >
-      {!uploaded && (
-        
+      {!infoEntered && (
         <div>
-          <div className="inner-container">
-            <p style={{ fontSize: "105px" }}>Clean Edits</p>
-            <h4>radio friendly edits for your project</h4>
-            <FilesUpload />
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              style={{ marginTop: "10px" }}
-              onClick={()=>setUploaded(true)}
-            >
-              Submit
-             
-            </Button>
-          </div>
-        </div>
+        <InputForm 
+        setInfoEntered={setInfoEntered} 
+        setNumOfEdits={setNumOfEdits}
+        setName={setName}
+        setEmail={setEmail}
+        
+        
+        />
+        
+      </div>
+        
+        
       )}
-      {uploaded && !infoEntered && (
+      {infoEntered && !uploaded && (
         <div>
-        <InputForm setInfoEntered={setInfoEntered} setNumOfEdits={setNumOfEdits}/>
-        
+        <div className="inner-container">
+          <p style={{ fontSize: "105px" }}>Clean Edits</p>
+          <h4>radio friendly edits for your project</h4>
+          <FilesUpload email={email} />
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            style={{ marginTop: "10px" }}
+            onClick={()=>setUploaded(true)}
+          >
+            Submit
+           
+          </Button>
+        </div>
       </div>
       )}
        {uploaded && infoEntered && (
         <div>
-        <Payment numOfEdits={numOfEdits} />
+        <Payment 
+          numOfEdits={numOfEdits} 
+          name={name}
+          email={email}  
+          
+        />
         
       </div>
       )}

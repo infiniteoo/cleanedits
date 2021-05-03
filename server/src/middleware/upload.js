@@ -4,6 +4,7 @@ const maxSize = 50000000;
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    console.log('in storage, file & req', req)
     cb(null, __basedir + "/resources/static/assets/uploads/");
   },
   filename: (req, file, cb) => {
