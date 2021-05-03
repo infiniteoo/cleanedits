@@ -8,11 +8,13 @@ const UploadFiles = (props) => {
   const [message, setMessage] = useState([]);
   const [fileInfos, setFileInfos] = useState([]);
   const progressInfosRef = useRef(null)
+  const [email, setEmail] = useState("")
   
 
   useEffect(() => {
     console.log('________________email',props.email)
-    UploadService.getFiles().then((response) => {
+    setEmail(props.email);
+    UploadService.getFiles(email).then((response) => {
       setFileInfos(response.data);
       
       
@@ -61,7 +63,7 @@ const UploadFiles = (props) => {
     const uploadPromises = files.map((file, i) => upload(i, file));
 
     Promise.all(uploadPromises)
-      .then(() => UploadService.getFiles())
+      .then(() => UploadService.getFiles(email))
       .then((files) => {
         setFileInfos(files.data);
       });

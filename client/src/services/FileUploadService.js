@@ -19,8 +19,9 @@ const upload = (file, email, onUploadProgress) => {
   });
 };
 
-const getFiles = () => {
-  return http.get("/files");
+const getFiles = (props) => {
+  console.log('in getfiles, props', props)
+  return http.get("/files" + props.email);
 };
 
 const FileUploadService = {

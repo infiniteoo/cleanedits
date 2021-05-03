@@ -2,6 +2,8 @@ const uploadFile = require("../middleware/upload");
 const fs = require("fs");
 const baseUrl = "http://localhost:8080/files/";
 const path = require('path');
+let emailAddress;
+let directoryPath;
 
 const upload = async (req, res) => {
   try {
@@ -10,7 +12,7 @@ const upload = async (req, res) => {
     await uploadFile(req, res);
     
     
-    
+    emailAddress = req.body.text;
     let uniqueID = req.body.text + "/";
     const dirPath = path.join(__dirname, "../../resources/static/assets/uploads/" + uniqueID);
     try {
@@ -82,7 +84,14 @@ const upload = async (req, res) => {
 };
 
 const getListFiles = (req, res) => {
-  const directoryPath = __basedir + "/resources/static/assets/uploads/" + req.params.text;
+  console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEMAIL ADDRESS', emailAddress)
+  if(emailAddress === undefined){
+    directoryPath = __basedir + "/resources/static/assets/temp/"
+  } else {
+    directoryPath = __basedir + "/resources/static/assets/uploads/" + emailAddress + "/";
+  }
+  
+  console.log('FINAL DIRECTORYPATH: ', directoryPath)
 
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
@@ -107,7 +116,8 @@ const getListFiles = (req, res) => {
 const download = (req, res) => {
   console.log('in download')
   const fileName = req.params.name;
-  const directoryPath = __basedir + "/resources/static/assets/uploads/";
+  
+  const directoryPath = __basedir + "/resources/static/assets/uploads/" + emailAddress;
 
   res.download(directoryPath + fileName, fileName, (err) => {
     if (err) {
