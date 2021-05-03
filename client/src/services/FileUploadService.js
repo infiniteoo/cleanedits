@@ -9,7 +9,7 @@ const upload = (file, email, onUploadProgress) => {
   // add email to formdata
   formData.append("file", file);
   formData.append("text", email);
-  console.log("formData",formData)
+  // console.log("formData",formData)
 
   return http.post("/upload", formData, {
     headers: {

@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const InputForm = (props) => {
 
   useEffect(() => {
-    console.log("props", props)
+  //  console.log("props", props)
     
   }, [])
 

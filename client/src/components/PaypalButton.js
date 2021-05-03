@@ -37,7 +37,7 @@ class PaypalButton extends React.Component {
 
   componentDidMount() {
     const { isScriptLoaded, isScriptLoadSucceed } = this.props;
-    console.log('component did mount props print: ', this.props)
+    // console.log('component did mount props print: ', this.props)
 
     if (isScriptLoaded && isScriptLoadSucceed) {
       PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
@@ -81,7 +81,7 @@ class PaypalButton extends React.Component {
         payerID: data.payerID,
         orderID: data.orderID
       };
-      console.log("Payment Approved: ", paymentData);
+     //  console.log("Payment Approved: ", paymentData);
       
       this.setState({ showButtons: false, paid: true, payerID: data.payerID, orderID: data.orderID });
     });

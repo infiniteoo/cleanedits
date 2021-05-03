@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: "10px 20px",
     border: "2px solid black",
-    marginRight: "10px"
+    marginRight: "10px",
+    boxShadow: "20px 20px 20px 0 rgba(0,0,0)"
    
   },
 }));

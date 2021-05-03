@@ -9,30 +9,45 @@ const upload = async (req, res) => {
    
     await uploadFile(req, res);
     
-    console.log('new new new newnewn ewn email? ???????',req.body.text)
+    
     
     let uniqueID = req.body.text + "/";
     const dirPath = path.join(__dirname, "../../resources/static/assets/uploads/" + uniqueID);
-    console.log('req.file', req.file);
+    try {
+        // if the directory already exists
+    !fs.promises.access(dirPath).then(()=> {
+      console.log('it was found!')
+     copyToEmailDir(req.file.path, dirPath + req.file.originalname)
+    }).catch(error => {
 
-    // if the directory already exists
-    if(fs.existsSync(dirPath)) {
-      // copy the file
-      copyToEmailDir(req.file.path, dirPath)
-
-      // if the directory doesnt exists make it then copy it
-    } else {
       fs.mkdir(dirPath, function(err) {
         if (err) {
-          console.log(err)
+          console.log('error',err)
         } else {
           console.log('new directory created.');
           copyToEmailDir(req.file.path, dirPath + req.file.originalname)
         }
       })
+
+
+    })
+    // copy the file
+   
+    } catch (error) {
+        // if the directory doesnt exists make it then copy it
+      console.log(error)
+        console.log('it was NOOOOOOT found!')
+        
+      
     }
+
+  
+
     
-    const copyToEmailDir = (oldPath, newPath) => {
+    
+    
+    const copyToEmailDir = async (oldPath, newPath) => {
+      console.log('oldpath, new path', oldPath, newPath)
 
       fs.rename(oldPath, newPath, function (err) {
         if (err) throw err
@@ -52,7 +67,7 @@ const upload = async (req, res) => {
       message: "Uploaded the file successfully: " + req,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
 
     if (err.code == "LIMIT_FILE_SIZE") {
       return res.status(500).send({
